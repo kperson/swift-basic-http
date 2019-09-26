@@ -265,7 +265,7 @@ public class HttpClient {
     
     public static let shared: HttpClient = HttpClient()
 
-    let eventGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
+    public let eventGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
 
     
     func runRequest(
