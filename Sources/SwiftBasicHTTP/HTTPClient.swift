@@ -261,9 +261,9 @@ private class RequestInvoker {
     }
 }
 
-public class HTTPClient {
+public class HttpClient {
     
-    public static let shared: HTTPClient = HTTPClient()
+    public static let shared: HttpClient = HttpClient()
 
     let eventGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
 
@@ -280,7 +280,7 @@ public class HTTPClient {
     }
 }
 
-public extension HTTPClient {
+public extension HttpClient {
 
     func get(url: URL, headers: [String : String] = [:]) -> EventLoopFuture<HttpResponse> {
         let request = HttpRequest(
