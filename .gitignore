@@ -1,0 +1,5 @@
+.lambda-build/
+.build/
+*.xcodeproj
+.DS_Store
+config.sh
