@@ -273,11 +273,13 @@ private class RequestInvoker {
 }
 
 public class HttpClient {
-    
+        
     public static let shared: HttpClient = HttpClient()
+    public let eventGroup: EventLoopGroup
 
-    public let eventGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
-
+    public init(eventGroup: EventLoopGroup? = nil) {
+        self.eventGroup = eventGroup ?? MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
+    }
     
     public func runRequest(
         request: HttpRequest
