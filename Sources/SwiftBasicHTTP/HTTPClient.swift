@@ -279,14 +279,14 @@ public class HttpClient {
     public let eventGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
 
     
-    func runRequest(
+    public func runRequest(
         request: HttpRequest
     ) -> EventLoopFuture<HttpResponse> {
         let invoker = RequestInvoker(request: request, eventGroup: eventGroup)
         return invoker.run()
     }
     
-    func close() {
+    public func close() {
         try? eventGroup.syncShutdownGracefully()
     }
 }
