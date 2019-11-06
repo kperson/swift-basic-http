@@ -64,6 +64,17 @@ public struct HttpRequest {
     public let body: Data?
     public let headers: Dictionary<String, String>?
     
+    public init(
+        requestMethod: RequestMethod,
+        url: URL,
+        body: Data?,
+        headers: Dictionary<String, String>?
+    ) {
+        self.requestMethod = requestMethod
+        self.url = url
+        self.body = body
+        self.headers = headers
+    }
     
     public func withNewURL(newURL: URL) -> HttpRequest {
         return HttpRequest(requestMethod: requestMethod, url: newURL, body: body, headers: headers)

@@ -5,5 +5,5 @@ A NIO HTTP Client For Swift.
 ## Example
 
 ```swift
-import RDSData
+import SwiftBasicHTTP
 
