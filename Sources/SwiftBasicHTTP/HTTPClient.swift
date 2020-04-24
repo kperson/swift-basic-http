@@ -171,6 +171,7 @@ private class RequestInvoker {
     let request: HttpRequest
     let eventGroup: EventLoopGroup
     let remainingAttempts: Int
+    let isSecure: Bool
 
     init(
         request: HttpRequest,
@@ -182,13 +183,12 @@ private class RequestInvoker {
         self.remainingAttempts = remainingAttempts
         let scheme = request.url.scheme!
         self.hostname = request.url.host!
-        
+        self.isSecure = scheme == "https"
         if let port = request.url.port {
             self.port = port
             self.headerHostname = "\(hostname):\(port)"
         }
         else {
-            let isSecure = (scheme == "https")
             self.port = isSecure ? 443 : 80
             self.headerHostname = self.hostname
         }
@@ -215,7 +215,7 @@ private class RequestInvoker {
         }
 
         var preHandlers = [ChannelHandler]()
-        if (port == 443) {
+        if isSecure {
             do {
                 let tlsConfiguration = TLSConfiguration.forClient()
                 let sslContext = try SSLContext(configuration: tlsConfiguration)
